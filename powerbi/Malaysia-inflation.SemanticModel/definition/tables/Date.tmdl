@@ -1,0 +1,63 @@
+table Date
+	lineageTag: 59f90828-e8f8-49c8-bfa4-64091e9396bb
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: General Date
+		lineageTag: 3a909b4d-8e6e-4e3d-9409-9a5d8209c9cf
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: 1733b32f-5eba-4bc0-b8f2-ba0291f8a8e3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		lineageTag: 948db634-8296-4c79-848f-d9658f33902e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month]
+		sortByColumn: 'Month No'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month No'
+		formatString: 0
+		lineageTag: c98ea405-0cb5-43b1-994b-c740509d876d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month No]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Month'
+		lineageTag: c53218d5-a653-40c2-8847-ca5995109628
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Date = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS (
+				    CALENDAR ( DATE ( 2010, 1, 1 ), EOMONTH ( MAX ( fact_cpi[date] ), 0 ) ),
+				    "Year", YEAR ( [Date] ),
+				    "Month", FORMAT ( [Date], "MMM" ),
+				    "Month No", MONTH ( [Date] ),
+				    "Year Month", FORMAT ( [Date], "YYYY-MM" )
+				)
+
+	annotation PBI_Id = 0071266d17e54fb3b2a62f808754e2b0
+

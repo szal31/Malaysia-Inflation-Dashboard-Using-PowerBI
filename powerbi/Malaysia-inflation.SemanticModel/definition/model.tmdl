@@ -1,0 +1,23 @@
+model Model
+	culture: en-MY
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-MY
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["DataFolder","fact_cpi","dim_state","dim_division","_Measure"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table fact_cpi
+ref table dim_state
+ref table dim_division
+ref table Date
+ref table _Measure
+
+ref cultureInfo en-MY
+

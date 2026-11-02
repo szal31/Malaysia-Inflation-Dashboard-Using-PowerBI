@@ -28,7 +28,9 @@
 | 1 | `prepare.py` | Merges the index and inflation files, adds national rows, builds a star schema (`fact_cpi`, `dim_state`, `dim_division`), and checks that DOSM's YoY figures match the index |
 | 2 | `powerbi/power_query.m` | Loads the CSVs with explicit types, using a folder parameter |
 | 3 | `powerbi/measures.dax` | Date table plus measures: YoY via `DATEADD`, state rank via `RANKX`, gap vs national, cumulative rise, top state via `TOPN` |
-| 4 | `powerbi/BUILD_GUIDE.md` | Visual-by-visual build steps |
+| 4 | `powerbi/Malaysia-inflation.pbip` | The report as a Power BI Project (text files: TMDL model + PBIR pages), so every change is reviewable in Git |
+| 5 | `powerbi/build_report.py` | Generates the three report pages (Overview, State comparison, Category drill-through) as PBIR files |
+| 6 | `powerbi/BUILD_GUIDE.md` | Visual-by-visual guide for building the same report by hand |
 
 Power BI skills used: star schema modeling, Power Query (M), DAX time intelligence, `RANKX` / `TOPN`, drill-through, conditional formatting, dynamic titles.
 
@@ -37,6 +39,8 @@ Power BI skills used: star schema modeling, Power Query (M), DAX time intelligen
 pip install pandas
 python prepare.py
 ```
-Then follow [`powerbi/BUILD_GUIDE.md`](powerbi/BUILD_GUIDE.md).
+Then open `powerbi/Malaysia-inflation.pbip` in Power BI Desktop. If you cloned the repo to a different folder, change the `DataFolder` parameter (Transform data → Manage Parameters) to your `data\clean\` path and click **Refresh**.
+
+To rebuild the report pages from code, close Power BI and run `python powerbi/build_report.py`.
 
 To refresh with new months, re-download the 4 CSVs from `https://storage.dosm.gov.my/cpi/` (`cpi_2d_state`, `cpi_2d_state_inflation`, `cpi_2d`, `cpi_2d_inflation`) into `data/raw/`, rerun `prepare.py`, and click **Refresh** in Power BI.

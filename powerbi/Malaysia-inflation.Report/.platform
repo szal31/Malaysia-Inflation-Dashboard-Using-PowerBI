@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Malaysia-inflation"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "4e534215-d809-4939-8dd2-d8672d58cc8c"
+  }
+}

@@ -1,0 +1,46 @@
+table dim_division
+	lineageTag: 4be88021-4cc8-4a13-8764-49c0adac0143
+
+	column division_code
+		dataType: string
+		lineageTag: d21b4887-10ad-4e87-b802-dd00ef7c096e
+		summarizeBy: none
+		sourceColumn: division_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column division
+		dataType: string
+		lineageTag: d23249b3-6d04-4f2a-8334-14932080c967
+		summarizeBy: none
+		sourceColumn: division
+		sortByColumn: sort_order
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column sort_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 6326e9a1-e11d-4e3d-aa76-571626279619
+		summarizeBy: none
+		sourceColumn: sort_order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_division = m
+		mode: import
+		source =
+				let
+				    Source  = Csv.Document(File.Contents(DataFolder & "dim_division.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed   = Table.TransformColumnTypes(Headers, {
+				                {"division_code", type text}, {"division", type text}, {"sort_order", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,77 @@
+table fact_cpi
+	lineageTag: c5917163-58d0-4ebf-9fc4-cffea5fcb2f3
+
+	column state
+		dataType: string
+		lineageTag: 4687ef5f-fe10-4854-abc7-c328cd8e49d2
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 831da1a2-6f10-4461-a65b-972d405059b7
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column division_code
+		dataType: string
+		lineageTag: d578b106-a3f6-450f-9f9d-12f28c560469
+		summarizeBy: none
+		sourceColumn: division_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column cpi_index
+		dataType: double
+		lineageTag: bd5feeba-9390-40f3-ad9b-fc5b1d124548
+		summarizeBy: sum
+		sourceColumn: cpi_index
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column inflation_yoy
+		dataType: double
+		lineageTag: 8190c6b0-588e-430f-994f-887aae912530
+		summarizeBy: sum
+		sourceColumn: inflation_yoy
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column inflation_mom
+		dataType: double
+		lineageTag: e27f104b-e456-41ba-9c34-680278b50610
+		summarizeBy: sum
+		sourceColumn: inflation_mom
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fact_cpi = m
+		mode: import
+		source =
+				let
+				    Source  = Csv.Document(File.Contents(DataFolder & "fact_cpi.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Blanks  = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"inflation_yoy", "inflation_mom"}),
+				    Typed   = Table.TransformColumnTypes(Blanks, {
+				                {"state", type text}, {"date", type date}, {"division_code", type text},
+				                {"cpi_index", type number}, {"inflation_yoy", type number}, {"inflation_mom", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

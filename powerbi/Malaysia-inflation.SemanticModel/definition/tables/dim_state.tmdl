@@ -1,0 +1,51 @@
+table dim_state
+	lineageTag: 2e6b0fe0-a016-4b9f-aeb2-82a873388688
+
+	column state
+		dataType: string
+		lineageTag: f0c57f00-e68e-4dff-8971-29dcc45be7a1
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: f582eb0c-9558-4b20-88b4-0a4f4f4405b0
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column map_location
+		dataType: string
+		lineageTag: 8b864442-ed2f-4b2b-a204-a2ce494fecfe
+		summarizeBy: none
+		sourceColumn: map_location
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_state
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: df01e45a-eab3-4b41-9583-05471d78319d
+		summarizeBy: none
+		sourceColumn: is_state
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_state = m
+		mode: import
+		source =
+				let
+				    Source  = Csv.Document(File.Contents(DataFolder & "dim_state.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed   = Table.TransformColumnTypes(Headers, {
+				                {"state", type text}, {"region", type text}, {"map_location", type text}, {"is_state", type logical}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

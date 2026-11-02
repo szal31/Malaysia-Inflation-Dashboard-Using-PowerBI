@@ -1,0 +1,7 @@
+expression DataFolder = "C:\Project\01-malaysia-inflation-powerbi\data\clean\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 61a56937-fed4-4d81-9316-64392eecfb58
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+

@@ -1,0 +1,12 @@
+relationship AutoDetected_4bd178b4-145e-4946-aba5-a07d9716ddb2
+	fromColumn: fact_cpi.division_code
+	toColumn: dim_division.division_code
+
+relationship eded569f-f2bc-73ef-1c17-9861473b6b87
+	fromColumn: fact_cpi.date
+	toColumn: Date.Date
+
+relationship 3319d723-26a2-9c81-c066-012229b5d417
+	fromColumn: fact_cpi.state
+	toColumn: dim_state.state
+

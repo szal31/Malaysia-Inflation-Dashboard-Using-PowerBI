@@ -1,2 +1,7 @@
 __pycache__/
 *.pbix.bak
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+powerbi/pages_backup_original/
+# the .pbip project is the source; the .pbix was an earlier hand-built copy
+*.pbix

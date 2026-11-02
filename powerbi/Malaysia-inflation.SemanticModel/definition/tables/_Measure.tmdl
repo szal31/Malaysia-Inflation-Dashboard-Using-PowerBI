@@ -1,0 +1,73 @@
+table _Measure
+	lineageTag: 177b6a5b-127f-48f9-98b4-2b90e2e3ac39
+
+	measure 'CPI Index' = AVERAGE ( fact_cpi[cpi_index] )
+		formatString: 0.0
+		lineageTag: a05e14a6-1912-477c-b57e-c77ef766539f
+
+	measure 'YoY Inflation %' = DIVIDE ( AVERAGE ( fact_cpi[inflation_yoy] ), 100 )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 913407ca-0ac7-4b59-8190-a77f8fd802ba
+
+	measure 'MoM Inflation %' = DIVIDE ( AVERAGE ( fact_cpi[inflation_mom] ), 100 )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: ce6337c3-8903-44f3-b097-9f62d1de595c
+
+	measure 'YoY Inflation % (calc)' =
+			
+			VAR PrevYear = CALCULATE ( [CPI Index], DATEADD ( 'Date'[Date], -12, MONTH ) )
+			RETURN DIVIDE ( [CPI Index], PrevYear ) - 1
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 62ca2f72-7042-4703-bab0-1ab87653fd19
+
+	measure 'Latest Month' = MAX ( fact_cpi[date] )
+		formatString: mmmm yyyy
+		lineageTag: c6543de4-c2d6-46d7-9fe3-8361ac0170a6
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	measure 'YoY Latest %' = VAR MaxDate = [Latest Month] RETURN CALCULATE ( [YoY Inflation %], REMOVEFILTERS ( 'Date' ), 'Date'[Date] = MaxDate )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 0f2e70c0-b847-4f87-ae54-0e8edfae1d12
+
+	measure 'Price Rise Since 2020 %' = VAR MaxDate = [Latest Month] VAR NowIdx = CALCULATE ( [CPI Index], REMOVEFILTERS ( 'Date' ), 'Date'[Date] = MaxDate ) VAR BaseIdx = CALCULATE ( [CPI Index], REMOVEFILTERS ( 'Date' ), 'Date'[Date] = DATE ( 2020, 1, 1 ) ) RETURN DIVIDE ( NowIdx, BaseIdx ) - 1
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 49b8f134-8998-4d38-b5d4-20a90e6ca35d
+
+	measure 'Highest Inflation State' = VAR MaxDate = [Latest Month] VAR Top1 = TOPN ( 1, FILTER ( ALL ( dim_state ), dim_state[is_state] ), CALCULATE ( [YoY Inflation %], REMOVEFILTERS ( 'Date' ), 'Date'[Date] = MaxDate ), DESC ) RETURN CONCATENATEX ( Top1, dim_state[state], ", " )
+		lineageTag: c47c2d77-5f2b-4281-992f-c0b51411b31d
+
+	measure 'National YoY Latest %' =
+			
+			CALCULATE ( [YoY Latest %], REMOVEFILTERS ( dim_state ), dim_state[state] = "Malaysia" )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: de0141a1-3205-43cd-bd0e-672ed6720792
+
+	measure 'Gap vs National (pp)' = ( [YoY Latest %] - [National YoY Latest %] ) * 100
+		formatString: 0.0
+		lineageTag: 2330a05d-b286-4ef1-b20b-0cb9053473d0
+
+	measure 'State Rank' =
+			
+			IF (
+			    HASONEVALUE ( dim_state[state] ) && SELECTEDVALUE ( dim_state[is_state] ),
+			    RANKX ( FILTER ( ALL ( dim_state ), dim_state[is_state] ), [YoY Latest %], , DESC, DENSE )
+			)
+		formatString: 0
+		lineageTag: 600020c1-c610-477c-a1d7-92fff6c4cad1
+
+	measure 'Overview Title' = "Malaysia inflation by state, " & FORMAT ( [Latest Month], "MMMM YYYY" )
+		lineageTag: 6aa47eac-8012-4ba7-917a-3295e1ebce66
+
+	partition _Measure = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+
