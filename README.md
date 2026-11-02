@@ -21,6 +21,8 @@
 
 ![State comparison page](images/states.png)
 
+![Category drill-through for Selangor](images/drill.png)
+
 ## Data
 [OpenDOSM](https://open.dosm.gov.my/) consumer price index by state and by COICOP division, monthly from 2010 to September 2026. The national series is included as a benchmark. 47,838 rows.
 
