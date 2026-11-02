@@ -1,0 +1,77 @@
+// ===== Calculated table: Modeling > New table =====
+// Mark it as a date table (Table tools > Mark as date table > Date).
+
+Date =
+ADDCOLUMNS (
+    CALENDAR ( DATE ( 2010, 1, 1 ), EOMONTH ( MAX ( fact_cpi[date] ), 0 ) ),
+    "Year", YEAR ( [Date] ),
+    "Month", FORMAT ( [Date], "MMM" ),
+    "Month No", MONTH ( [Date] ),
+    "Year Month", FORMAT ( [Date], "YYYY-MM" )
+)
+
+
+// ===== Measures: create a blank table called _Measures and add these to it =====
+// Most visuals should be filtered to one division (default "Overall") via a slicer.
+
+CPI Index =
+AVERAGE ( fact_cpi[cpi_index] )
+
+// Official DOSM year-on-year rate. Format as Percentage, 1 decimal.
+YoY Inflation % =
+DIVIDE ( AVERAGE ( fact_cpi[inflation_yoy] ), 100 )
+
+MoM Inflation % =
+DIVIDE ( AVERAGE ( fact_cpi[inflation_mom] ), 100 )
+
+// Same rate rebuilt from the index with time intelligence; should match YoY Inflation % within rounding.
+YoY Inflation % (calc) =
+VAR PrevYear = CALCULATE ( [CPI Index], DATEADD ( 'Date'[Date], -12, MONTH ) )
+RETURN DIVIDE ( [CPI Index], PrevYear ) - 1
+
+// Latest month that has data in the current filter context.
+Latest Month =
+MAX ( fact_cpi[date] )
+
+YoY Latest % =
+VAR LastDate = [Latest Month]
+RETURN CALCULATE ( [YoY Inflation %], REMOVEFILTERS ( 'Date' ), 'Date'[Date] = LastDate )
+
+National YoY Latest % =
+CALCULATE ( [YoY Latest %], REMOVEFILTERS ( dim_state ), dim_state[state] = "Malaysia" )
+
+// Percentage points above (+) or below (-) the national rate.
+Gap vs National (pp) =
+( [YoY Latest %] - [National YoY Latest %] ) * 100
+
+State Rank =
+IF (
+    HASONEVALUE ( dim_state[state] ) && SELECTEDVALUE ( dim_state[is_state] ),
+    RANKX (
+        FILTER ( ALL ( dim_state ), dim_state[is_state] ),
+        [YoY Latest %], , DESC, DENSE
+    )
+)
+
+// Total price rise between Jan 2020 and the latest month.
+Price Rise Since 2020 % =
+VAR LastDate = [Latest Month]
+VAR NowIdx = CALCULATE ( [CPI Index], REMOVEFILTERS ( 'Date' ), 'Date'[Date] = LastDate )
+VAR BaseIdx = CALCULATE ( [CPI Index], REMOVEFILTERS ( 'Date' ), 'Date'[Date] = DATE ( 2020, 1, 1 ) )
+RETURN DIVIDE ( NowIdx, BaseIdx ) - 1
+
+// Card text, e.g. "Negeri Sembilan, W.P. Labuan" (ties are all listed).
+Highest Inflation State =
+VAR LastDate = [Latest Month]
+VAR Top1 =
+    TOPN (
+        1,
+        FILTER ( ALL ( dim_state ), dim_state[is_state] ),
+        CALCULATE ( [YoY Inflation %], REMOVEFILTERS ( 'Date' ), 'Date'[Date] = LastDate ),
+        DESC
+    )
+RETURN CONCATENATEX ( Top1, dim_state[state], ", " )
+
+// Dynamic title for the overview page.
+Overview Title =
+"Malaysia inflation by state, " & FORMAT ( [Latest Month], "MMMM YYYY" )

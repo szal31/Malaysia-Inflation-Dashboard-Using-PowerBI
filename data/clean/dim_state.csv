@@ -1,0 +1,18 @@
+state,region,map_location,is_state
+Johor,Southern,"Johor, Malaysia",True
+Kedah,Northern,"Kedah, Malaysia",True
+Kelantan,East Coast,"Kelantan, Malaysia",True
+Melaka,Southern,"Melaka, Malaysia",True
+Negeri Sembilan,Southern,"Negeri Sembilan, Malaysia",True
+Pahang,East Coast,"Pahang, Malaysia",True
+Perak,Northern,"Perak, Malaysia",True
+Perlis,Northern,"Perlis, Malaysia",True
+Pulau Pinang,Northern,"Penang, Malaysia",True
+Sabah,East Malaysia,"Sabah, Malaysia",True
+Sarawak,East Malaysia,"Sarawak, Malaysia",True
+Selangor,Central,"Selangor, Malaysia",True
+Terengganu,East Coast,"Terengganu, Malaysia",True
+W.P. Kuala Lumpur,Central,"Kuala Lumpur, Malaysia",True
+W.P. Labuan,East Malaysia,"Labuan, Malaysia",True
+W.P. Putrajaya,Central,"Putrajaya, Malaysia",True
+Malaysia,National,Malaysia,False
