@@ -34,8 +34,8 @@ Latest Month =
 MAX ( fact_cpi[date] )
 
 YoY Latest % =
-VAR LastDate = [Latest Month]
-RETURN CALCULATE ( [YoY Inflation %], REMOVEFILTERS ( 'Date' ), 'Date'[Date] = LastDate )
+VAR MaxDate = [Latest Month]
+RETURN CALCULATE ( [YoY Inflation %], REMOVEFILTERS ( 'Date' ), 'Date'[Date] = MaxDate )
 
 National YoY Latest % =
 CALCULATE ( [YoY Latest %], REMOVEFILTERS ( dim_state ), dim_state[state] = "Malaysia" )
@@ -55,19 +55,19 @@ IF (
 
 // Total price rise between Jan 2020 and the latest month.
 Price Rise Since 2020 % =
-VAR LastDate = [Latest Month]
-VAR NowIdx = CALCULATE ( [CPI Index], REMOVEFILTERS ( 'Date' ), 'Date'[Date] = LastDate )
+VAR MaxDate = [Latest Month]
+VAR NowIdx = CALCULATE ( [CPI Index], REMOVEFILTERS ( 'Date' ), 'Date'[Date] = MaxDate )
 VAR BaseIdx = CALCULATE ( [CPI Index], REMOVEFILTERS ( 'Date' ), 'Date'[Date] = DATE ( 2020, 1, 1 ) )
 RETURN DIVIDE ( NowIdx, BaseIdx ) - 1
 
 // Card text, e.g. "Negeri Sembilan, W.P. Labuan" (ties are all listed).
 Highest Inflation State =
-VAR LastDate = [Latest Month]
+VAR MaxDate = [Latest Month]
 VAR Top1 =
     TOPN (
         1,
         FILTER ( ALL ( dim_state ), dim_state[is_state] ),
-        CALCULATE ( [YoY Inflation %], REMOVEFILTERS ( 'Date' ), 'Date'[Date] = LastDate ),
+        CALCULATE ( [YoY Inflation %], REMOVEFILTERS ( 'Date' ), 'Date'[Date] = MaxDate ),
         DESC
     )
 RETURN CONCATENATEX ( Top1, dim_state[state], ", " )
