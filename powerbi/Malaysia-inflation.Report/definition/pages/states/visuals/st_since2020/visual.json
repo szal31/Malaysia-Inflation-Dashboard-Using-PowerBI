@@ -3,9 +3,9 @@
   "name": "st_since2020",
   "position": {
     "x": 1148,
-    "y": 120,
+    "y": 176,
     "z": 0,
-    "height": 460,
+    "height": 416,
     "width": 748,
     "tabOrder": 0
   },
@@ -83,6 +83,36 @@
             }
           }
         }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0369A1'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -97,6 +127,19 @@
               }
             },
             "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Total price rise since January 2020'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
               "expr": {
                 "Literal": {
                   "Value": "'Total price rise since January 2020'"

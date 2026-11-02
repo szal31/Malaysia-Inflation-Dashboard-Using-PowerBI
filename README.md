@@ -17,7 +17,9 @@
 |---|---|
 | Overview | Headline rate, highest-inflation state, state ranking against the national rate, trend over time |
 | State comparison | Year-by-state heatmap, cumulative rise since 2020, gap vs national |
-| Category drill-through | Which categories drive inflation in a chosen state |
+| Category drill-through | Which categories drive inflation in a chosen state (right-click a state's bar on Overview) |
+
+![State comparison page](images/states.png)
 
 ## Data
 [OpenDOSM](https://open.dosm.gov.my/) consumer price index by state and by COICOP division, monthly from 2010 to September 2026. The national series is included as a benchmark. 47,838 rows.
@@ -32,7 +34,7 @@
 | 5 | `powerbi/build_report.py` | Generates the three report pages (Overview, State comparison, Category drill-through) as PBIR files |
 | 6 | `powerbi/BUILD_GUIDE.md` | Visual-by-visual guide for building the same report by hand |
 
-Power BI skills used: star schema modeling, Power Query (M), DAX time intelligence, `RANKX` / `TOPN`, drill-through, conditional formatting, dynamic titles.
+Power BI skills used: star schema modeling, Power Query (M), DAX time intelligence, `RANKX` / `TOPN`, drill-through, conditional formatting, dynamic titles, a custom report theme (`powerbi/theme.json`) and page navigation.
 
 ## Run it
 ```bash

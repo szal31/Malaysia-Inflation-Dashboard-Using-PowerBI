@@ -3,9 +3,9 @@
   "name": "dr_month",
   "position": {
     "x": 1296,
-    "y": 120,
+    "y": 176,
     "z": 0,
-    "height": 150,
+    "height": 128,
     "width": 600,
     "tabOrder": 0
   },
@@ -44,6 +44,17 @@
                   "Value": "22D"
                 }
               }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0369A1'"
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -70,6 +81,19 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Latest month'"
                 }
               }
             }

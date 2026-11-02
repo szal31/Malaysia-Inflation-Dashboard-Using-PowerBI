@@ -3,9 +3,9 @@
   "name": "st_heatmap",
   "position": {
     "x": 24,
-    "y": 120,
+    "y": 176,
     "z": 0,
-    "height": 940,
+    "height": 848,
     "width": 1100,
     "tabOrder": 0
   },
@@ -91,7 +91,44 @@
           }
         }
       ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "rowHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            }
+          }
+        }
+      ],
       "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            }
+          }
+        },
         {
           "properties": {
             "backColor": {
@@ -114,14 +151,14 @@
                           "min": {
                             "color": {
                               "Literal": {
-                                "Value": "'#EFF6FF'"
+                                "Value": "'#F0F9FF'"
                               }
                             }
                           },
                           "max": {
                             "color": {
                               "Literal": {
-                                "Value": "'#60A5FA'"
+                                "Value": "'#38BDF8'"
                               }
                             }
                           },
@@ -165,6 +202,19 @@
               }
             },
             "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Average yearly inflation by state (darker = higher)'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
               "expr": {
                 "Literal": {
                   "Value": "'Average yearly inflation by state (darker = higher)'"

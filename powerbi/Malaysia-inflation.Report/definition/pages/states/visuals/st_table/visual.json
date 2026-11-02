@@ -3,9 +3,9 @@
   "name": "st_table",
   "position": {
     "x": 1148,
-    "y": 600,
+    "y": 608,
     "z": 0,
-    "height": 460,
+    "height": 416,
     "width": 748,
     "tabOrder": 0
   },
@@ -123,6 +123,19 @@
               }
             },
             "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Latest month: gap to the national rate'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
               "expr": {
                 "Literal": {
                   "Value": "'Latest month: gap to the national rate'"

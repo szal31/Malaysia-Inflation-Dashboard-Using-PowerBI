@@ -3,9 +3,9 @@
   "name": "ov_title",
   "position": {
     "x": 24,
-    "y": 16,
+    "y": 12,
     "z": 0,
-    "height": 90,
+    "height": 60,
     "width": 1100,
     "tabOrder": 0
   },
@@ -50,6 +50,17 @@
                   "Value": "true"
                 }
               }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0F172A'"
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -70,6 +81,32 @@
     },
     "visualContainerObjects": {
       "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
         {
           "properties": {
             "show": {

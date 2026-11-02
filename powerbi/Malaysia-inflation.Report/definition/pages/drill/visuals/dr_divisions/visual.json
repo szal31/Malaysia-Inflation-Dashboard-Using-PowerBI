@@ -3,9 +3,9 @@
   "name": "dr_divisions",
   "position": {
     "x": 24,
-    "y": 296,
+    "y": 320,
     "z": 0,
-    "height": 760,
+    "height": 704,
     "width": 880,
     "tabOrder": 0
   },
@@ -83,6 +83,36 @@
             }
           }
         }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0369A1'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -97,6 +127,19 @@
               }
             },
             "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Inflation by spending category, latest month'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
               "expr": {
                 "Literal": {
                   "Value": "'Inflation by spending category, latest month'"

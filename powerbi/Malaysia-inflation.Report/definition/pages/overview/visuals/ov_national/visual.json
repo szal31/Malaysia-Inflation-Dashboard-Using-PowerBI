@@ -3,9 +3,9 @@
   "name": "ov_national",
   "position": {
     "x": 24,
-    "y": 124,
+    "y": 176,
     "z": 0,
-    "height": 150,
+    "height": 128,
     "width": 600,
     "tabOrder": 0
   },
@@ -44,6 +44,17 @@
                   "Value": "28D"
                 }
               }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0369A1'"
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -70,6 +81,19 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'National inflation (YoY)'"
                 }
               }
             }

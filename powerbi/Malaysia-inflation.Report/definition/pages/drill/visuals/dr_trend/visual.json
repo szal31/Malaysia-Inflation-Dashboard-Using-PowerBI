@@ -3,9 +3,9 @@
   "name": "dr_trend",
   "position": {
     "x": 928,
-    "y": 296,
+    "y": 320,
     "z": 0,
-    "height": 760,
+    "height": 704,
     "width": 968,
     "tabOrder": 0
   },
@@ -82,6 +82,19 @@
               }
             },
             "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Key categories over time'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
               "expr": {
                 "Literal": {
                   "Value": "'Key categories over time'"
