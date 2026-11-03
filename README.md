@@ -4,7 +4,7 @@
 
 ![Overview page](images/overview.png)
 
-<!-- Live report: add your Publish-to-web link here -->
+**[Open the live interactive report](https://app.powerbi.com/view?r=eyJrIjoiZmZjNDg2ODItNzJhMy00OTllLWJmNTYtM2Q5MDg4YWFiMGQxIiwidCI6ImNkY2JiMGUyLTlmZWEtNGY1NC04NjcwLTY3MjcwNzc5N2FkYSIsImMiOjEwfQ%3D%3D)** (Power BI, no sign-in needed)
 
 ## Key findings (CPI, September 2026)
 1. **National inflation is 1.8% YoY**, but the spread between states is wide: **from 0.5% in Sarawak to 2.4% in Negeri Sembilan and Labuan**.

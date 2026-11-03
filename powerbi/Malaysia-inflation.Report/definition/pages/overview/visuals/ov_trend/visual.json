@@ -27,7 +27,26 @@
                 }
               },
               "queryRef": "Date.Date",
-              "nativeQueryRef": "Date"
+              "nativeQueryRef": "Date",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_state"
+                    }
+                  },
+                  "Property": "state"
+                }
+              },
+              "queryRef": "dim_state.state",
+              "nativeQueryRef": "state"
             }
           ]
         },
@@ -47,24 +66,6 @@
               "queryRef": "_Measure.YoY Inflation %",
               "nativeQueryRef": "YoY Inflation %",
               "displayName": "YoY inflation"
-            }
-          ]
-        },
-        "Series": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "dim_state"
-                    }
-                  },
-                  "Property": "state"
-                }
-              },
-              "queryRef": "dim_state.state",
-              "nativeQueryRef": "state"
             }
           ]
         }

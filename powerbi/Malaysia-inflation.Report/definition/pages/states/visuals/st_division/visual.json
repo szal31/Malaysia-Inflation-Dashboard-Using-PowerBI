@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "dim_division.division",
-              "nativeQueryRef": "division"
+              "nativeQueryRef": "division",
+              "active": true
             }
           ]
         }
