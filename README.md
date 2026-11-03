@@ -6,6 +6,8 @@
 
 **[Open the live interactive report](https://app.powerbi.com/view?r=eyJrIjoiZmZjNDg2ODItNzJhMy00OTllLWJmNTYtM2Q5MDg4YWFiMGQxIiwidCI6ImNkY2JiMGUyLTlmZWEtNGY1NC04NjcwLTY3MjcwNzc5N2FkYSIsImMiOjEwfQ%3D%3D)** (Power BI, no sign-in needed)
 
+**[Ask the AI about Malaysia's economy](https://malaysia-economic-ai-assistant.streamlit.app/)**: a companion chatbot that answers questions in English or Malay from Bank Negara reports and this CPI data, with page citations ([code](https://github.com/szal31/Malaysia-Economy-AI-Assistant-using-RAG)). The dashboard links to it with a button on each page.
+
 ## Key findings (CPI, September 2026)
 1. **National inflation is 1.8% YoY**, but the spread between states is wide: **from 0.5% in Sarawak to 2.4% in Negeri Sembilan and Labuan**.
 2. **Since January 2020, prices in Putrajaya are up 19.3%** (the highest), followed by Selangor at 15.1%. Labuan (7.7%) and Kelantan (8.0%) rose least.

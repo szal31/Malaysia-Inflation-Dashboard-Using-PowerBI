@@ -27,8 +27,7 @@
                 }
               },
               "queryRef": "Date.Date",
-              "nativeQueryRef": "Date",
-              "active": true
+              "nativeQueryRef": "Date"
             }
           ]
         }

@@ -27,8 +27,7 @@
                 }
               },
               "queryRef": "dim_state.state",
-              "nativeQueryRef": "state",
-              "active": true
+              "nativeQueryRef": "state"
             }
           ]
         },
@@ -67,7 +66,8 @@
             },
             "direction": "Descending"
           }
-        ]
+        ],
+        "isDefaultSort": false
       }
     },
     "objects": {

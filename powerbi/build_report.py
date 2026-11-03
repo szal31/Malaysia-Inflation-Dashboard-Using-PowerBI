@@ -18,6 +18,7 @@ MODEL = ROOT / "Malaysia-inflation.SemanticModel" / "definition" / "tables"
 SCHEMA = "https://developer.microsoft.com/json-schemas/fabric/item/report/definition"
 M = "_Measure"
 ACCENT, SLATE = "#0369A1", "#64748B"  # same accent as theme.json dataColors[0]
+AI_APP = "https://malaysia-economic-ai-assistant.streamlit.app/"  # companion chatbot (project 06)
 REPORT = ROOT / "Malaysia-inflation.Report"
 THEME_NAME = "MalaysiaInflation.json"
 DIVISIONS = ["Food & Non-Alcoholic Beverages", "Alcoholic Beverages & Tobacco", "Clothing & Footwear",
@@ -151,7 +152,24 @@ def navigator(name):
 def header(prefix, title_visual, subtitle):
     return [title_visual,
             textbox(f"{prefix}_subtitle", (24, 72, 1100, 40), subtitle, size="12pt", bold=False),
-            navigator(f"{prefix}_nav")]
+            navigator(f"{prefix}_nav"), ai_button(f"{prefix}_ai")]
+
+
+def ai_button(name):
+    """Opens the chatbot in a new tab: Power BI can't embed a Streamlit app, so it links out."""
+    label = "Ask the AI about Malaysia's economy →"
+    b = visual(name, "actionButton", (1476, 120, 420, 44))
+    default = {"id": "default"}
+    b["visual"]["objects"] = {
+        "text": [{"properties": {"show": lit("true"), "text": text(label), "fontColor": color("#FFFFFF"),
+                                 "bold": lit("true")}, "selector": default}],
+        "fill": [{"properties": {"show": lit("true"), "fillColor": color(ACCENT), "transparency": lit("0D")},
+                  "selector": default}],
+        "icon": [{"properties": {"show": lit("false")}, "selector": default}]}
+    b["visual"]["visualContainerObjects"]["visualLink"] = [
+        {"properties": {"show": lit("true"), "type": text("WebUrl"), "webUrl": text(AI_APP)}}]
+    b["visual"]["visualContainerObjects"]["general"] = [{"properties": {"altText": text(label)}}]
+    return b
 
 
 def textbox(name, pos, words, size="24pt", bold=True):
