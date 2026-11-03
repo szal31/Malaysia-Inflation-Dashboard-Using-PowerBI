@@ -158,14 +158,16 @@ def header(prefix, title_visual, subtitle):
 def ai_button(name):
     """Opens the chatbot in a new tab: Power BI can't embed a Streamlit app, so it links out."""
     label = "Ask the AI about Malaysia's economy →"
-    b = visual(name, "actionButton", (1476, 120, 420, 44))
+    b = visual(name, "actionButton", (1476, 112, 420, 58))
     default = {"id": "default"}
+    # "show" is set for the whole button; the values belong to its default (not hovered) state
     b["visual"]["objects"] = {
-        "text": [{"properties": {"show": lit("true"), "text": text(label), "fontColor": color("#FFFFFF"),
-                                 "bold": lit("true")}, "selector": default}],
-        "fill": [{"properties": {"show": lit("true"), "fillColor": color(ACCENT), "transparency": lit("0D")},
-                  "selector": default}],
-        "icon": [{"properties": {"show": lit("false")}, "selector": default}]}
+        "text": [{"properties": {"show": lit("true")}},
+                 {"properties": {"text": text(label), "fontColor": color("#FFFFFF"), "bold": lit("true"),
+                                 "fontSize": lit("11D")}, "selector": default}],
+        "fill": [{"properties": {"show": lit("true")}},
+                 {"properties": {"fillColor": color(ACCENT), "transparency": lit("0D")}, "selector": default}],
+        "icon": [{"properties": {"show": lit("false")}}]}
     b["visual"]["visualContainerObjects"]["visualLink"] = [
         {"properties": {"show": lit("true"), "type": text("WebUrl"), "webUrl": text(AI_APP)}}]
     b["visual"]["visualContainerObjects"]["general"] = [{"properties": {"altText": text(label)}}]

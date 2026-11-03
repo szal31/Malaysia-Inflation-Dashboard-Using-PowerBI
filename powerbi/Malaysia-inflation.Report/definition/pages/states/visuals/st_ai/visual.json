@@ -3,9 +3,9 @@
   "name": "st_ai",
   "position": {
     "x": 1476,
-    "y": 120,
+    "y": 112,
     "z": 0,
-    "height": 44,
+    "height": 58,
     "width": 420,
     "tabOrder": 0
   },
@@ -77,7 +77,11 @@
                   "Value": "true"
                 }
               }
-            },
+            }
+          }
+        },
+        {
+          "properties": {
             "text": {
               "expr": {
                 "Literal": {
@@ -102,6 +106,13 @@
                   "Value": "true"
                 }
               }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
             }
           },
           "selector": {
@@ -118,7 +129,11 @@
                   "Value": "true"
                 }
               }
-            },
+            }
+          }
+        },
+        {
+          "properties": {
             "fillColor": {
               "solid": {
                 "color": {
@@ -153,9 +168,6 @@
                 }
               }
             }
-          },
-          "selector": {
-            "id": "default"
           }
         }
       ]
