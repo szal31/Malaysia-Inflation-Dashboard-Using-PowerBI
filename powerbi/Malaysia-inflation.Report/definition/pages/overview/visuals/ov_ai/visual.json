@@ -58,7 +58,7 @@
             "altText": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ask the AI about Malaysia''s economy \u2192'"
+                  "Value": "'Ask the AI about Malaysia''s economy →'"
                 }
               }
             }
@@ -85,7 +85,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ask the AI about Malaysia''s economy \u2192'"
+                  "Value": "'Ask the AI about Malaysia''s economy →'"
                 }
               }
             },
